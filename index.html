@@ -1,19 +1,57 @@
-<header>
-    <ul>
-        <li><a href="#home-view">Home</a></li>
-        <li><a href="#browse-view">Browse</a></li>
-        <li><a href="#product-view">Product</a></li>
-        <li><a href="#cart-view">Cart</a></li>
-    </ul>
-</header>
+ <header class="site-header">
+        <a href="#home" class="brand" data-view="home" aria-label="Northfield Market home">
+            <span class="brand-logo" aria-hidden="true">N</span>
+            <span class="brand-name">Northfield Market</span>
+        </a>
+ 
+        <nav class="main-nav" aria-label="Main">
+            <ul>
+                <li><a href="#home" data-view="home">Home</a></li>
+                <li><a href="#browse" data-view="browse">Browse</a></li>
+                <li><a href="#category" data-view="category">Category</a></li>
+                <li><button type="button" class="link-button" id="about-open">About</button></li>
+            </ul>
+        </nav>
 
-
-<main>
+  <a href="#cart" class="cart-link" data-view="cart" aria-label="Shopping cart">
+            <span aria-hidden="true">&#128722;</span> Cart
+            
+            <span class="cart-count" id="cart-count">0</span>
+        </a>
+    </header>
+ 
+ 
+    <main id="app">
     <section id="home-view"></section>
 
     <section id="browse-view" hidden></section>
 
-    <section id="product-view" hidden></section>
+    <section id="product-view" hidden>
+        <nav id="breadcrumb"></nav>
+        <!--Product details-->
+        <div class="singleProduct">
+            <img id="productImage">
+            <h2 id="productTitle"></h2>
+            <h3 id="productPrice"></h3>
+            <p id="SKU"></p>
+            <span id="starRating"></span>
+            <ul id="tagPills"></ul>
+            <p id="stockStatus"></p>
+            <p id="productDesc"></p>
+        </div>
+
+        <!--User Interaction-->
+        <div id="userInput">
+        <input type="number" id="cartQty" value="1" min="1">
+        <button id="addToCart"></button>
+        </div>
+        
+        <!--Specs and Reviews-->
+        <button id="specBtn">Specifications</button>
+        <div id="specifications"></div>
+        <button id="reviewBtn">Reviews</button>
+        <div id="reviews"></div>
+    </section>
 
     <section id="cart-view" hidden></section>
 </main>
