@@ -1,3 +1,7 @@
+ <!DOCTYPE html>
+ <head>
+    <script src = "https://cdn.tailwindcss.com"></script>
+ </head>
  <header class="site-header">
         <a href="#home" class="brand" data-view="home" aria-label="Northfield Market home">
             <span class="brand-logo" aria-hidden="true">N</span>
@@ -21,40 +25,136 @@
     </header>
  
  
+      <a href="#cart" class="cart-link" data-view="cart" aria-label="Shopping cart">
+            <span aria-hidden="true">&#128722;</span> Cart
+            <span class="cart-count" id="cart-count">0</span>
+        </a>
+    </header>
+
+<body>
     <main id="app">
-    <section id="home-view"></section>
 
-    <section id="browse-view" hidden></section>
+        <article id="home-view" class="view">
+            <section class="hero">
+                <div class="hero-text">
+                    <p class="eyebrow">New season, new finds</p>
+                    <h1>Everything you need, all in one place.</h1>
+                    <p>From beauty and fragrances to laptops and furniture, browse over 100 hand-picked products.</p>
+                    <div class="hero-actions">
+                        <a href="#browse" data-view="browse" class="button button-primary">Shop all products</a>
+                        <a href="#category" data-view="category" class="button button-secondary">View categories</a>
+                    </div>
+                </div>
+                <img class="hero-image" src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/1.webp" alt="Annibale Colombo sofa in a bright living room setting" width="600" height="450">
+            </section>
 
-    <section id="product-view" hidden>
-        <nav id="breadcrumb"></nav>
-        <!--Product details-->
-        <div class="singleProduct">
-            <img id="productImage">
-            <h2 id="productTitle"></h2>
-            <h3 id="productPrice"></h3>
+
+        <!-- Single product -->    
+        <article id="singleproduct">
+            <div id="breadcrumb"></div>
+            <img id="prodImage">
+            <h2 id="prodTitle"></h2>
+            <p id="prodPrice"></p>
             <p id="SKU"></p>
             <span id="starRating"></span>
-            <ul id="tagPills"></ul>
+            <div id="tagPills"></div>
             <p id="stockStatus"></p>
             <p id="productDesc"></p>
-        </div>
 
-        <!--User Interaction-->
-        <div id="userInput">
-        <input type="number" id="cartQty" value="1" min="1">
-        <button id="addToCart"></button>
-        </div>
-        
-        <!--Specs and Reviews-->
-        <button id="specBtn">Specifications</button>
-        <div id="specifications"></div>
-        <button id="reviewBtn">Reviews</button>
-        <div id="reviews"></div>
-    </section>
+            <!--User Input-->
+            <input type="number" id="prodQuantity" value="1" min="1">
+            <button id="addToCart">+ Add to Cart</button>
 
-    <section id="cart-view" hidden></section>
-</main>
+            <!--Spec and Reviews area-->
+            <button id="specBtn">Specifications</button>
+            <button id="reviewBtn">Reviews</button>
+            <div id="specifications">
+                <p id="weight"></p>
+                <p id ="dimensions"></p>
+                <p id="warranty"></p>
+                <p id="shippingInfo"></p>
+                <p id="returnPolicy"></p>
+            </div>
+            <div id="reviews"class= "hidden"></div>
+
+        </article>
+            <section class="home-section">
+                <div class="section-heading">
+                    <h2>Featured products</h2>
+                    <a href="#browse" data-view="browse">See all &rarr;</a>
+                </div>
+                <div class="product-grid" id="featured-products">
+                    <article class="product-card">
+                        <a href="#product" class="product-card-link" data-view="product" data-id="99">
+                            <img class="product-card-image" src="https://cdn.dummyjson.com/product-images/mobile-accessories/amazon-echo-plus/thumbnail.webp" alt="Amazon Echo Plus" loading="lazy" width="300" height="300">
+                            <h3 class="product-card-title">Amazon Echo Plus</h3>
+                        </a>
+                        <p class="product-card-category">Mobile Accessories</p>
+                        <div class="product-card-footer">
+                            <span class="product-card-price">$99.99</span>
+                            <button type="button" class="add-button" data-id="99" aria-label="Add Amazon Echo Plus to cart">+</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <a href="#product" class="product-card-link" data-view="product" data-id="80">
+                            <img class="product-card-image" src="https://cdn.dummyjson.com/product-images/laptops/huawei-matebook-x-pro/thumbnail.webp" alt="Huawei Matebook X Pro" loading="lazy" width="300" height="300">
+                            <h3 class="product-card-title">Huawei Matebook X Pro</h3>
+                        </a>
+                        <p class="product-card-category">Laptops</p>
+                        <div class="product-card-footer">
+                            <span class="product-card-price">$1399.99</span>
+                            <button type="button" class="add-button" data-id="80" aria-label="Add Huawei Matebook X Pro to cart">+</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <a href="#product" class="product-card-link" data-view="product" data-id="95">
+                            <img class="product-card-image" src="https://cdn.dummyjson.com/product-images/mens-watches/rolex-cellini-date-black-dial/thumbnail.webp" alt="Rolex Cellini Date Black Dial" loading="lazy" width="300" height="300">
+                            <h3 class="product-card-title">Rolex Cellini Date Black Dial</h3>
+                        </a>
+                        <p class="product-card-category">Mens Watches</p>
+                        <div class="product-card-footer">
+                            <span class="product-card-price">$8999.99</span>
+                            <button type="button" class="add-button" data-id="95" aria-label="Add Rolex Cellini Date Black Dial to cart">+</button>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <a href="#product" class="product-card-link" data-view="product" data-id="90">
+                            <img class="product-card-image" src="https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/thumbnail.webp" alt="Puma Future Rider Trainers" loading="lazy" width="300" height="300">
+                            <h3 class="product-card-title">Puma Future Rider Trainers</h3>
+                        </a>
+                        <p class="product-card-category">Mens Shoes</p>
+                        <div class="product-card-footer">
+                            <span class="product-card-price">$89.99</span>
+                            <button type="button" class="add-button" data-id="90" aria-label="Add Puma Future Rider Trainers to cart">+</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="perks" aria-label="Why shop with us">
+                <div class="perk">
+                    <h3>Free shipping</h3>
+                    <p>On every order over $500.</p>
+                </div>
+                <div class="perk">
+                    <h3>Easy returns</h3>
+                    <p>Most items can be returned within 30 days.</p>
+                </div>
+                <div class="perk">
+                    <h3>Your cart is saved</h3>
+                    <p>Close the page and come back any time.</p>
+                </div>
+            </section>
+        </article>
+
+        <article id="category-view" class="view" hidden>
+
+
+    <a href="#" class="product-link" data-id="1">Test product 1</a>
+    </main>
+
+    <script type="module" src="product.js"></script>
+</body>
 
 
 
@@ -77,3 +177,10 @@
     
     <p class="copyright">&copy COMP3612. All rights reserved.</p>
 </footer>
+</html>
+
+
+
+
+
+
