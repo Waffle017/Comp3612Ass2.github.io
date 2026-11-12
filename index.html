@@ -144,6 +144,56 @@
 
         <article id="category-view" class="view" hidden>
         </article>
+        <article id="cart-view" class="view" hidden>
+            <h1>Shopping Cart</h1>
+
+            <div class="cart-layout">
+                <div>
+                    <p id="cart-empty" class="empty-message" hidden>Your cart is empty.</p>
+
+                    <table id="cart-table" class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-rows"></tbody>
+                    </table>
+                </div>
+
+                <div class="cart-summary">
+                    <fieldset id="shipping-options">
+                        <legend>Shipping</legend>
+                        <p>Method</p>
+                        <select id="shipping-method">
+                            <option value="standard">Standard</option>
+                            <option value="express">Express</option>
+                            <option value="priority">Priority</option>
+                        </select>
+                        <p>Destination</p>
+                        <select id="shipping-destination">
+                            <option value="CA">Canada</option>
+                            <option value="US">United States</option>
+                            <option value="INT">International</option>
+                        </select>
+                    </fieldset>
+
+                    <h2>Summary</h2>
+                    <p>Merchandise: <span id="summary-merchandise">$0.00</span></p>
+                    <p>Shipping: <span id="summary-shipping">$0.00</span></p>
+                    <p>Tax: <span id="summary-tax">$0.00</span></p>
+                    <p><strong>Total: <span id="summary-total">$0.00</span></strong></p>
+
+                    <button type="button" id="checkout-button" class="button button-primary button-block">Checkout</button>
+                </div>
+            </div>
+        </article>
+
+  
 
     <a href="#" class="product-link" data-id="1">Test product 1</a>
     </main>
