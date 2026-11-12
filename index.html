@@ -1,3 +1,7 @@
+ <!DOCTYPE html>
+ <head>
+    <script src = "https://cdn.tailwindcss.com"></script>
+ </head>
  <header class="site-header">
         <a href="#home" class="brand" data-view="home" aria-label="Northfield Market home">
             <span class="brand-logo" aria-hidden="true">N</span>
@@ -27,6 +31,7 @@
         </a>
     </header>
 
+<body>
     <main id="app">
 
         <article id="home-view" class="view">
@@ -43,6 +48,36 @@
                 <img class="hero-image" src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/1.webp" alt="Annibale Colombo sofa in a bright living room setting" width="600" height="450">
             </section>
 
+
+        <!-- Single product -->    
+        <article id="singleproduct">
+            <div id="breadcrumb"></div>
+            <img id="prodImage">
+            <h2 id="prodTitle"></h2>
+            <p id="prodPrice"></p>
+            <p id="SKU"></p>
+            <span id="starRating"></span>
+            <div id="tagPills"></div>
+            <p id="stockStatus"></p>
+            <p id="productDesc"></p>
+
+            <!--User Input-->
+            <input type="number" id="prodQuantity" value="1" min="1">
+            <button id="addToCart">+ Add to Cart</button>
+
+            <!--Spec and Reviews area-->
+            <button id="specBtn">Specifications</button>
+            <button id="reviewBtn">Reviews</button>
+            <div id="specifications">
+                <p id="weight"></p>
+                <p id ="dimensions"></p>
+                <p id="warranty"></p>
+                <p id="shippingInfo"></p>
+                <p id="returnPolicy"></p>
+            </div>
+            <div id="reviews"class= "hidden"></div>
+
+        </article>
             <section class="home-section">
                 <div class="section-heading">
                     <h2>Featured products</h2>
@@ -113,22 +148,27 @@
         </article>
 
         <article id="category-view" class="view" hidden>
-</main>
+
+
+    <a href="#" class="product-link" data-id="1">Test product 1</a>
+    </main>
+
+    <script type="module" src="product.js"></script>
+</body>
 
 
 
 <footer>
+    <p>Github</p>
     <ul>
-        <p>Github</p>
             <li><a href=#>Github</a></li>
             <li><a href=#> Privacy Policy </a></li>
             <li><a href=#> Terms of Service </a></li>
             <li><a href=#> Contact Us</a></li>
 
     </ul>
-
+    <p>Connect</p>
     <ul class = "connect">
-        <p>Connect</p>
         <li> <a href = #> Newsletter</a> </li>
         <li> <a href = #> Facebook</a> </li>
         <li> <a href = #> Instagram</a> </li>
@@ -137,3 +177,10 @@
     
     <p class="copyright">&copy COMP3612. All rights reserved.</p>
 </footer>
+</html>
+
+
+
+
+
+
