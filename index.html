@@ -148,10 +148,28 @@
     <a href="#" class="product-link" data-id="1">Test product 1</a>
     </main>
 
+    <!-- <dialog id="about-dialog" class="about-dialog"> --> <!-- when js is working we will use this line-->
+    <dialog id="about-dialog" class="about-dialog" open> <!--when js is working we will delete this line !-->
+        <form method="dialog">
+            <button class="dialog-close">&times;</button> <!-- Close button: &times; shows an × symbol. Because it is inside a form with method="dialog", clicking it closes the dialog without any JavaScript. -Google -->
+        </form>
+
+        <h2>About this project</h2>
+        <p>This is my COMP 3612 Assignment 2. It is a simple online store where you can shop for products and add them to a cart.</p>
+
+        <h3>Technologies</h3>
+        <p>HTML, CSS and JavaScript</p>
+        <p>Hosted on GitHub Pages</p>
+
+        <h3>Credits</h3>
+        <p>Gabriel Robles & Scott Louden</p>
+
+        <p><a class="button button-secondary" href="https://github.com/Waffle017/Comp3612Ass2.github.io">View the GitHub repo</a></p>
+    </dialog>
+
 <footer>
-    <p>Github</p>
     <ul>
-            <li><a href=#>Github</a></li>
+            <li><a href=#https://github.com/Waffle017/Comp3612Ass2.github.io>Github</a></li>
             <li><a href=#> Privacy Policy </a></li>
             <li><a href=#> Terms of Service </a></li>
             <li><a href=#> Contact Us</a></li>
