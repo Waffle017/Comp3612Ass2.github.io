@@ -24,9 +24,20 @@ export function addToCart(productId, quantity){
 
 
 function displayCart(){
+    let totalCount = 0;
     for(let item of cart){
+        totalCount += item.quantity;
+    }
+    let span = document.querySelector("#cart-count"); //set the cart count to the total count
+    span.textContent = totalCount;
+
+    let cartRows = document.querySelector("#cart-rows"); //clear the table rows 
+    cartRows.innerHtml = "";
+
+    if (cart.length == 0){
         
     }
+
 }
 document.addEventListener("DOMContentLoaded", () =>{
 
