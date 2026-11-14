@@ -1,4 +1,5 @@
 import config from './data-minified.json' with { type: 'json' };
+import { addToCart } from './shoppingcart.js'
 document.addEventListener("DOMContentLoaded", () => {
 
     function displaySingleProduct(product){
@@ -83,13 +84,13 @@ document.addEventListener("DOMContentLoaded", () => {
         review.classList.remove("hidden");
     });
 
-    let addToCart = document.querySelector("#addToCart");
-    addToCart.addEventListener("click", () =>{
-        let prodId = addToCart.dataset.id;
+    let addToCartBtn = document.querySelector("#addToCart");
+    addToCartBtn.addEventListener("click", () =>{
+        let prodId = addToCartBtn.dataset.id;
         let qtyValue = document.querySelector("#prodQuantity").value;
-        Number(prodId);
-        Number(qtyValue);
 
+
+        addToCart(Number(prodId), Number(qtyValue));
         console.log(prodId);
         console.log(qtyValue);
     });

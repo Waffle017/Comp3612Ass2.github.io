@@ -1,25 +1,33 @@
 import config from './data-minified.json' with { type: 'json' };
-document.addEventListener("DOMContentLoaded", () =>{
-    let cart = [];
+let cart = [];
 
-    function addToCart(productId, quantity){
-        for(let products of config.products){
-            if (productId == products.id){
-                for(let cartProd of cart){
-                    if (productId == cartProd.id){
-                        cartProd.quantity += quantity;
-                    } else {
-                        config.products.id.push(cart)
-                        config.products.title.push(cart)
-                        config.products.price.push(cart)
-                        config.products.thumbnail.push(cart)
-                        config.products.quantity.push(cart)
-                    }
-                }
+export function addToCart(productId, quantity){
+    let foundInCart = null;
+        for(let cartProd of cart){
+            if (cartProd.id == productId){
+                foundInCart = cartProd;
             }
         }
-
-        
+        if (foundInCart){
+            foundInCart.quantity += quantity;
+        } else {
+            for (let prod of config.products){
+               if (prod.id == productId){
+                let product = {id:prod.id, title: prod.title, thumbnail:prod.thumbnail, quantity:quantity, price: prod.price }
+                cart.push(product);
+               }     
+            }
+        }
+        console.log(cart);   
 
     }
+
+
+function displayCart(){
+    for(let item of cart){
+        
+    }
+}
+document.addEventListener("DOMContentLoaded", () =>{
+
 });
