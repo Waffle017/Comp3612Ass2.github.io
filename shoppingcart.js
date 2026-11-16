@@ -89,6 +89,8 @@ function displayCart(){
             tr.appendChild(remove);
 
             document.querySelector("#cart-rows").appendChild(tr);
+
+            updateCartSummary();
             
         }
     }
@@ -97,8 +99,71 @@ function displayCart(){
 
 //Helper functions 
 function updateCartSummary(){
-    
-}
-document.addEventListener("DOMContentLoaded", () =>{
+    //All the query selectors needed for cart summary
+    let shipping = document.querySelector("#summary-shipping");
+    let taxAmt = document.querySelector("#summary-tax");
+    let merch = document.querySelector("#summary-merchandise");
+    let summary = document.querySelector("#summary-total");
+    let shippingMethod = document.querySelector("#shipping-method option").value;
+    let shippingDestination = document.querySelector("#shipping-destination option").value;
 
-});
+    //all calculated totals
+    let subTotal = 0;
+    let shipPrice = 0;
+    let tax = 0;
+
+    // get the sub total for one item and its quantity
+    for(let item of cart){
+        subTotal = item.price * item.quantity;
+    }
+    merch.textContent = `$${subTotal.toFixed(2)}`
+    //figure out the shipping amount 
+    if(subTotal > 500 || cart.length == 0){
+        shipping.textContent = "$0.00"
+    } else { //calculate the shipping 
+        if ( shippingMethod == "standard"){  //if the shipping method is standard
+            if (shippingDestination == "CA"){ //set the shipping amount based on destination region
+                shipPrice = 10;
+                shipping.textContent = shipPrice;
+            } else if(shippingDestination == "US"){
+                shipPrice = 15;
+                shipping.textContent = shipPrice;
+            } else{ //shipping amount is international & standard
+                shipPrice = 20;
+                shipping.textContent = shipPrice;
+            }
+        } else if(shippingMethod == "express"){ //if the shipping method is express
+            if (shippingDestination == "CA"){ //set the shipping amount based on destination region
+                shipPrice = 25;
+                shipping.textContent = shipPrice;
+            } else if(shippingDestination == "US"){
+                shipPrice = 25;
+                shipping.textContent = shipPrice;
+            } else{ //shipping amount is international & express 
+                shipPrice = 30;
+                shipping.textContent = shipPrice;
+            }
+            } else{ //if the shipping method is priority 
+                if (shippingDestination == "CA"){ //set the shipping amount based on destination region
+                    shipPrice = 35;
+                    shipping.textContent = shipPrice;
+                } else if(shippingDestination == "US"){
+                    shipPrice = 50;
+                    shipping.textContent = shipPrice;
+                } else{ //shipping amount is international & priority
+                    shipPrice = 50;
+                    shipping.textContent = shipPrice;
+                } 
+            }
+    }
+    //Calculate tax total
+    if (document.querySelector("#shipping-destination").value == "CA"){
+        tax = subTotal * 0.05;
+        taxAmt.textContent = tax.toFixed(2);
+    } else{
+        tax = 0;
+        taxAmt.textContent = tax.toFixed(2);
+    }
+    let total = subTotal + shipPrice + tax;
+    summary.textContent = total.toFixed(2);
+}

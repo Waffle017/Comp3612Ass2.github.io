@@ -86,11 +86,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let addToCartBtn = document.querySelector("#addToCart");
     addToCartBtn.addEventListener("click", () =>{
-        let prodId = addToCartBtn.dataset.id;
-        let qtyValue = document.querySelector("#prodQuantity").value;
+        let prodId = Number(addToCartBtn.dataset.id);
+        let qtyValue = Number(document.querySelector("#prodQuantity").value);
 
 
-        addToCart(Number(prodId), Number(qtyValue));
+        addToCart(prodId, qtyValue);
         console.log(prodId);
         console.log(qtyValue);
     });
