@@ -1,7 +1,10 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
  <head>
     <script src = "https://cdn.tailwindcss.com"></script>
  </head>
+
+<body>
  <header class="site-header">
         <a href="#home" class="brand" data-view="home" aria-label="Northfield Market home">
             <span class="brand-logo" aria-hidden="true">N</span>
@@ -23,15 +26,7 @@
             <span class="cart-count" id="cart-count">0</span>
         </a>
     </header>
- 
- 
-      <a href="#cart" class="cart-link" data-view="cart" aria-label="Shopping cart">
-            <span aria-hidden="true">&#128722;</span> Cart
-            <span class="cart-count" id="cart-count">0</span>
-        </a>
-    </header>
 
-<body>
     <main id="app">
 
         <article id="home-view" class="view">
@@ -48,36 +43,6 @@
                 <img class="hero-image" src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/1.webp" alt="Annibale Colombo sofa in a bright living room setting" width="600" height="450">
             </section>
 
-
-        <!-- Single product -->    
-        <article id="singleproduct">
-            <div id="breadcrumb"></div>
-            <img id="prodImage">
-            <h2 id="prodTitle"></h2>
-            <p id="prodPrice"></p>
-            <p id="SKU"></p>
-            <span id="starRating"></span>
-            <div id="tagPills"></div>
-            <p id="stockStatus"></p>
-            <p id="productDesc"></p>
-
-            <!--User Input-->
-            <input type="number" id="prodQuantity" value="1" min="1">
-            <button id="addToCart">+ Add to Cart</button>
-
-            <!--Spec and Reviews area-->
-            <button id="specBtn">Specifications</button>
-            <button id="reviewBtn">Reviews</button>
-            <div id="specifications">
-                <p id="weight"></p>
-                <p id ="dimensions"></p>
-                <p id="warranty"></p>
-                <p id="shippingInfo"></p>
-                <p id="returnPolicy"></p>
-            </div>
-            <div id="reviews"class= "hidden"></div>
-
-        </article>
             <section class="home-section">
                 <div class="section-heading">
                     <h2>Featured products</h2>
@@ -147,21 +112,234 @@
             </section>
         </article>
 
-        <article id="category-view" class="view" hidden>
+        <!-- Single product -->    
+        <article id="singleproduct">
+            <div id="breadcrumb"></div>
+            <img id="prodImage">
+            <h2 id="prodTitle"></h2>
+            <p id="prodPrice"></p>
+            <p id="SKU"></p>
+            <span id="starRating"></span>
+            <div id="tagPills"></div>
+            <p id="stockStatus"></p>
+            <p id="productDesc"></p>
 
+            <!--User Input-->
+            <input type="number" id="prodQuantity" value="1" min="1">
+            <button id="addToCart">+ Add to Cart</button>
+
+            <!--Spec and Reviews area-->
+            <button id="specBtn">Specifications</button>
+            <button id="reviewBtn">Reviews</button>
+            <div id="specifications">
+                <p id="weight"></p>
+                <p id ="dimensions"></p>
+                <p id="warranty"></p>
+                <p id="shippingInfo"></p>
+                <p id="returnPolicy"></p>
+            </div>
+            <div id="reviews" class= "hidden"></div>
+
+        </article>
+
+        <!-- <article id="browse-view" class="view" hidden> -->
+        <article id="browse-view" class="view">
+            <h1>Browse Products</h1>
+
+            <div class="browse-layout">
+
+                <div class="filters">
+                    <h2>Filters</h2>
+
+                    <details class="filter-group" open>
+                        <summary>Name</summary>
+                        <input type="text" id="filter-name" placeholder="Search by name">
+                    </details>
+
+                    <details class="filter-group">
+                        <summary>Category</summary>
+                        <div id="filter-categories" class="checkbox-list">
+                            <p><input type="checkbox" value="beauty"> Beauty</p>
+                            <p><input type="checkbox" value="fragrances"> Fragrances</p>
+                            <p><input type="checkbox" value="furniture"> Furniture</p>
+                            <p><input type="checkbox" value="groceries"> Groceries</p>
+                            <p><input type="checkbox" value="home-decoration"> Home Decoration</p>
+                            <p><input type="checkbox" value="kitchen-accessories"> Kitchen Accessories</p>
+                            <p><input type="checkbox" value="laptops"> Laptops</p>
+                            <p><input type="checkbox" value="mens-shirts"> Mens Shirts</p>
+                            <p><input type="checkbox" value="mens-shoes"> Mens Shoes</p>
+                            <p><input type="checkbox" value="mens-watches"> Mens Watches</p>
+                            <p><input type="checkbox" value="mobile-accessories"> Mobile Accessories</p>
+                        </div>
+                    </details>
+
+                    <details class="filter-group">
+                        <summary>Rating</summary>
+                        <div id="filter-rating" class="radio-list">
+                            <p><input type="radio" name="rating" value="0" checked> Any rating</p>
+                            <p><input type="radio" name="rating" value="4"> 4 stars and up</p>
+                            <p><input type="radio" name="rating" value="3"> 3 stars and up</p>
+                        </div>
+                    </details>
+
+                    <details class="filter-group">
+                        <summary>Price</summary>
+                        <div class="price-fields">
+                            <p>Min $ <input type="number" id="filter-price-min" min="0"></p>
+                            <p>Max $ <input type="number" id="filter-price-max" min="0"></p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="results">
+                    <div class="results-toolbar">
+                        <h2>Results</h2>
+                        <select id="sort-select">
+                            <option value="name">Sort by name</option>
+                            <option value="price">Sort by price</option>
+                            <option value="category">Sort by category</option>
+                        </select>
+                    </div>
+
+                    <div id="active-filters" class="active-filters"></div>
+                    <button type="button" id="clear-all-filters">Clear all filters</button>
+
+                    <p id="no-results" class="empty-message" hidden>No products match your filters.</p>
+
+                    <div id="browse-results" class="product-grid"></div>
+                </div>
+
+            </div>
+        </article>
+
+        <article id="category-view" class="view" hidden>
+        </article>
+        <article id="cart-view" class="view" hidden>
+            <h1>Shopping Cart</h1>
+
+            <div class="cart-layout">
+                <div>
+                    <p id="cart-empty" class="empty-message" hidden>Your cart is empty.</p>
+
+                    <table id="cart-table" class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-rows"></tbody>
+                    </table>
+                </div>
+
+                <div class="cart-summary">
+                    <fieldset id="shipping-options">
+                        <legend>Shipping</legend>
+                        <p>Method</p>
+                        <select id="shipping-method">
+                            <option value="standard">Standard</option>
+                            <option value="express">Express</option>
+                            <option value="priority">Priority</option>
+                        </select>
+                        <p>Destination</p>
+                        <select id="shipping-destination">
+                            <option value="CA">Canada</option>
+                            <option value="US">United States</option>
+                            <option value="INT">International</option>
+                        </select>
+                    </fieldset>
+
+                    <h2>Summary</h2>
+                    <p>Merchandise: <span id="summary-merchandise">$0.00</span></p>
+                    <p>Shipping: <span id="summary-shipping">$0.00</span></p>
+                    <p>Tax: <span id="summary-tax">$0.00</span></p>
+                    <p><strong>Total: <span id="summary-total">$0.00</span></strong></p>
+
+                    <button type="button" id="checkout-button" class="button button-primary button-block">Checkout</button>
+                </div>
+            </div>
+        </article>
+
+  
+
+        <article id="cart-view" class="view" hidden>
+            <h1>Shopping Cart</h1>
+
+            <div class="cart-layout">
+                <div>
+                    <p id="cart-empty" class="empty-message" hidden>Your cart is empty.</p>
+
+                    <table id="cart-table" class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-rows"></tbody>
+                    </table>
+                </div>
+
+                <div class="cart-summary">
+                    <fieldset id="shipping-options">
+                        <legend>Shipping</legend>
+                        <p>Method</p>
+                        <select id="shipping-method">
+                            <option value="standard">Standard</option>
+                            <option value="express">Express</option>
+                            <option value="priority">Priority</option>
+                        </select>
+                        <p>Destination</p>
+                        <select id="shipping-destination">
+                            <option value="CA">Canada</option>
+                            <option value="US">United States</option>
+                            <option value="INT">International</option>
+                        </select>
+                    </fieldset>
+
+                    <h2>Summary</h2>
+                    <p>Merchandise: <span id="summary-merchandise">$0.00</span></p>
+                    <p>Shipping: <span id="summary-shipping">$0.00</span></p>
+                    <p>Tax: <span id="summary-tax">$0.00</span></p>
+                    <p><strong>Total: <span id="summary-total">$0.00</span></strong></p>
+
+                    <button type="button" id="checkout-button" class="button button-primary button-block">Checkout</button>
+                </div>
+            </div>
+        </article>
 
     <a href="#" class="product-link" data-id="1">Test product 1</a>
     </main>
 
-    <script type="module" src="product.js"></script>
-</body>
+    <!-- <dialog id="about-dialog" class="about-dialog"> --> <!-- when js is working we will use this line-->
+    <dialog id="about-dialog" class="about-dialog" open> <!--when js is working we will delete this line !-->
+        <form method="dialog">
+            <button class="dialog-close">&times;</button> <!-- Close button: &times; shows an × symbol. Because it is inside a form with method="dialog", clicking it closes the dialog without any JavaScript. -Google -->
+        </form>
 
+        <h2>About this project</h2>
+        <p>This is my COMP 3612 Assignment 2. It is a simple online store where you can shop for products and add them to a cart.</p>
 
+        <h3>Technologies</h3>
+        <p>HTML, CSS and JavaScript</p>
+        <p>Hosted on GitHub Pages</p>
+
+        <h3>Credits</h3>
+        <p>Gabriel Robles & Scott Louden</p>
+
+        <p><a class="button button-secondary" href="https://github.com/Waffle017/Comp3612Ass2.github.io">View the GitHub repo</a></p>
+    </dialog>
 
 <footer>
     <p>Github</p>
     <ul>
-            <li><a href=#>Github</a></li>
+            <li><a href=#https://github.com/Waffle017/Comp3612Ass2.github.io>Github</a></li>
             <li><a href=#> Privacy Policy </a></li>
             <li><a href=#> Terms of Service </a></li>
             <li><a href=#> Contact Us</a></li>
@@ -177,10 +355,7 @@
     
     <p class="copyright">&copy COMP3612. All rights reserved.</p>
 </footer>
+
+    <script type="module" src="product.js"></script>
+</body>
 </html>
-
-
-
-
-
-
