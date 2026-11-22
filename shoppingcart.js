@@ -104,8 +104,8 @@ function updateCartSummary(){
     let taxAmt = document.querySelector("#summary-tax");
     let merch = document.querySelector("#summary-merchandise");
     let summary = document.querySelector("#summary-total");
-    let shippingMethod = document.querySelector("#shipping-method option").value;
-    let shippingDestination = document.querySelector("#shipping-destination option").value;
+    let shippingMethod = document.querySelector("#shipping-method").value;
+    let shippingDestination = document.querySelector("#shipping-destination").value;
 
     //all calculated totals
     let subTotal = 0;
@@ -167,3 +167,17 @@ function updateCartSummary(){
     let total = subTotal + shipPrice + tax;
     summary.textContent = total.toFixed(2);
 }
+
+document.addEventListener("DOMContentLoaded", () =>{
+
+    const shippingSelect = document.querySelector("#shipping-method");
+    const destSelect = document.querySelector("#shipping-destination");
+
+    shippingSelect.addEventListener("change", () => {
+        updateCartSummary();
+    })
+
+    destSelect.addEventListener("change", () => {
+        updateCartSummary();
+    })
+});
