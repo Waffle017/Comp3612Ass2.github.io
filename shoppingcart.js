@@ -19,6 +19,7 @@ export function addToCart(productId, quantity){
             }
         }
         displayCart(); // display the contents of the cart
+        saveCart(); //in the event the user refreshes, save the cart
 
     }
 
@@ -175,7 +176,24 @@ function updateCartSummary(){
     summary.textContent = total.toFixed(2);
 }
 
+function toastDisplay(msg){
+    let toast = document.querySelector("#toast");
+    toast.textContent = msg; // set the text to the message 
+    toast.hidden = false; // unhide the div element
+    setTimeout(() => toast.hidden = true, 3000); //have the message disappear after 3 seconds
+
+}
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
 document.addEventListener("DOMContentLoaded", () =>{
+    let item = localStorage.getItem("cart");
+    if(item){
+        cart = JSON.parse(item);
+        displayCart();
+    }
     //all query selectors for each event handler
     const shippingSelect = document.querySelector("#shipping-method");
     const destSelect = document.querySelector("#shipping-destination");
@@ -196,25 +214,20 @@ document.addEventListener("DOMContentLoaded", () =>{
             let prodId = Number(e.target.dataset.id);
             cart = cart.filter(item => item.id !== prodId);
             displayCart();
+            saveCart(); //in the event the user refreshes, save the cart
+
         }
     });
 
     checkout.addEventListener("click", (e) => { //click event when a checkout occurs
         cart = [];
+        saveCart(); //in the event the user refreshes, save the cart
         displayCart();
         document.querySelector("#cart-view").hidden = true; //hide the cart
         document.querySelector("#home-view").hidden = false; //go back to the home view
         let msg = "Order placed!";
         toastDisplay(msg);
-
-    })
+    });
     
 });
-//Helper functions
-function toastDisplay(msg){
-    let toast = document.querySelector("#toast");
-    toast.textContent = msg; // set the text to the message 
-    toast.hidden = false; // unhide the div element
-    setTimeout(() => toast.hidden = true, 3000); //have the message disappear after 3 seconds
 
-}
