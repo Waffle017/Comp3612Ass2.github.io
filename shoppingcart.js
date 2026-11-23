@@ -204,6 +204,17 @@ document.addEventListener("DOMContentLoaded", () =>{
         displayCart();
         document.querySelector("#cart-view").hidden = true; //hide the cart
         document.querySelector("#home-view").hidden = false; //go back to the home view
+        let msg = "Order placed!";
+        toastDisplay(msg);
+
     })
     
 });
+//Helper functions
+function toastDisplay(msg){
+    let toast = document.querySelector("#toast");
+    toast.textContent = msg; // set the text to the message 
+    toast.hidden = false; // unhide the div element
+    setTimeout(() => toast.hidden = true, 3000); //have the message disappear after 3 seconds
+
+}
