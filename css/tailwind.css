@@ -42,3 +42,137 @@ body {
 #app {
   padding: calc(var(--spacing, 0.25rem) * 6);
 }
+/* ===== PART 2: home view ===== */
+
+/* bg-blue-100 p-6 rounded */
+.hero {
+  border-radius: 0.25rem;
+  background-color: var(--color-blue-100, oklch(93.2% 0.032 255.585));
+  padding: calc(var(--spacing, 0.25rem) * 6);
+}
+/* text-blue-700 font-bold uppercase */
+.eyebrow {
+  --tw-font-weight: var(--font-weight-bold, 700);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+  text-transform: uppercase;
+}
+/* text-4xl font-bold */
+.hero h1 {
+  font-size: var(--text-4xl, 2.25rem);
+  line-height: var(--tw-leading, var(--text-4xl--line-height, calc(2.5 / 2.25)));
+  --tw-font-weight: var(--font-weight-bold, 700);
+  font-weight: var(--font-weight-bold, 700);
+}
+/* flex gap-4 mt-4 */
+.hero-actions {
+  margin-top: calc(var(--spacing, 0.25rem) * 4);
+  display: flex;
+  gap: calc(var(--spacing, 0.25rem) * 4);
+}
+/* inline-block bg-blue-700 text-white px-4 py-2 rounded */
+.button-primary {
+  display: inline-block;
+  border-radius: 0.25rem;
+  background-color: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+  padding-inline: calc(var(--spacing, 0.25rem) * 4);
+  padding-block: calc(var(--spacing, 0.25rem) * 2);
+  color: var(--color-white, #fff);
+}
+/* inline-block border-2 border-blue-700 px-4 py-2 rounded */
+.button-secondary {
+  display: inline-block;
+  border-radius: 0.25rem;
+  border-style: var(--tw-border-style);
+  border-width: 2px;
+  border-color: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+  padding-inline: calc(var(--spacing, 0.25rem) * 4);
+  padding-block: calc(var(--spacing, 0.25rem) * 2);
+}
+/* w-96 mt-4 rounded */
+.hero-image {
+  margin-top: calc(var(--spacing, 0.25rem) * 4);
+  width: calc(var(--spacing, 0.25rem) * 96);
+  border-radius: 0.25rem;
+}
+/* mt-8 */
+.home-section {
+  margin-top: calc(var(--spacing, 0.25rem) * 8);
+}
+/* flex justify-between mb-4 */
+.section-heading {
+  margin-bottom: calc(var(--spacing, 0.25rem) * 4);
+  display: flex;
+  justify-content: space-between;
+}
+/* text-2xl font-bold */
+.section-heading h2 {
+  font-size: var(--text-2xl, 1.5rem);
+  line-height: var(--tw-leading, var(--text-2xl--line-height, calc(2 / 1.5)));
+  --tw-font-weight: var(--font-weight-bold, 700);
+  font-weight: var(--font-weight-bold, 700);
+}
+/* text-blue-700 */
+.section-heading a {
+  color: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+}
+/* grid grid-cols-4 gap-4 */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: calc(var(--spacing, 0.25rem) * 4);
+}
+/* bg-white p-4 rounded */
+.product-card {
+  border-radius: 0.25rem;
+  background-color: var(--color-white, #fff);
+  padding: calc(var(--spacing, 0.25rem) * 4);
+}
+/* w-full */
+.product-card-image {
+  width: 100%;
+}
+/* font-bold */
+.product-card-title {
+  --tw-font-weight: var(--font-weight-bold, 700);
+  font-weight: var(--font-weight-bold, 700);
+}
+/* text-gray-500 */
+.product-card-category {
+  color: var(--color-gray-500, oklch(55.1% 0.027 264.364));
+}
+/* flex justify-between */
+.product-card-footer {
+  display: flex;
+  justify-content: space-between;
+}
+/* font-bold */
+.product-card-price {
+  --tw-font-weight: var(--font-weight-bold, 700);
+  font-weight: var(--font-weight-bold, 700);
+}
+/* bg-blue-700 text-white px-3 rounded */
+.add-button {
+  border-radius: 0.25rem;
+  background-color: var(--color-blue-700, oklch(48.8% 0.243 264.376));
+  padding-inline: calc(var(--spacing, 0.25rem) * 3);
+  color: var(--color-white, #fff);
+}
+/* grid grid-cols-3 gap-4 mt-8 */
+.perks {
+  margin-top: calc(var(--spacing, 0.25rem) * 8);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--spacing, 0.25rem) * 4);
+}
+/* bg-white p-4 rounded */
+.perk {
+  border-radius: 0.25rem;
+  background-color: var(--color-white, #fff);
+  padding: calc(var(--spacing, 0.25rem) * 4);
+}
+/* font-bold */
+.perk h3 {
+  --tw-font-weight: var(--font-weight-bold, 700);
+  font-weight: var(--font-weight-bold, 700);
+}
