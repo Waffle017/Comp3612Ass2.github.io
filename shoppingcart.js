@@ -72,6 +72,7 @@ function displayCart(){
             sub.textContent = `$${total.toFixed(2)}`;
             //set the remove btn
             let btn = document.createElement("button");
+            btn.id = "del-btn"
             btn.textContent="-";
             btn.dataset.id = item.id;
 
@@ -90,10 +91,10 @@ function displayCart(){
 
             document.querySelector("#cart-rows").appendChild(tr);
 
-            updateCartSummary();
             
         }
     }
+    updateCartSummary();
 
 }
 
@@ -169,15 +170,24 @@ function updateCartSummary(){
 }
 
 document.addEventListener("DOMContentLoaded", () =>{
-
     const shippingSelect = document.querySelector("#shipping-method");
     const destSelect = document.querySelector("#shipping-destination");
+    const cartRow = document.querySelector("#cart-rows");
 
-    shippingSelect.addEventListener("change", () => {
+
+    shippingSelect.addEventListener("change", () => { //When the user changes the shipping method recalculate total
         updateCartSummary();
     })
 
-    destSelect.addEventListener("change", () => {
+    destSelect.addEventListener("change", () => { //When the user changes the destination recalculate total
         updateCartSummary();
+    })
+
+    cartRow.addEventListener("click", (e) => {
+        if (e.target.tagName == "BUTTON"){
+            let prodId = Number(e.target.dataset.id);
+            cart = cart.filter(item => item.id !== prodId);
+            displayCart();
+        }
     })
 });
