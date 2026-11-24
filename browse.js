@@ -61,7 +61,17 @@ function displayBrowse(products){
         browseResults.appendChild(article);
     }
 }
-
+//sort through the filters and only display what was given
+function applyFiltersAndSort(){
+    let name = document.querySelector("#filter-name");
+    let filterName = name.value;
+    let filteredArr = config.products.filter(()=>true); //copy all elements from products array
+    filterName = filterName.trim(); //remove whitespace
+    filterName = filterName.toLowerCase(); //convert to lowercase
+    if(filterName != ''){
+        filteredArr = filteredArr.filter(item => item.title.toLowerCase(includes(filterName)));   
+    }
+}
 
 document.addEventListener("DOMContentLoaded", () =>{
     displayBrowse(config.products);
