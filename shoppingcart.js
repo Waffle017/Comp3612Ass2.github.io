@@ -122,7 +122,7 @@ function updateCartSummary(){
 
     // get the sub total for one item and its quantity
     for(let item of cart){
-        subTotal = item.price * item.quantity;
+        subTotal += (item.price * item.quantity);
     }
     merch.textContent = `$${subTotal.toFixed(2)}`
     //figure out the shipping amount 
