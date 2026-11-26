@@ -1,6 +1,7 @@
 import config from './data-minified.json' with { type: 'json' };
-
-
+import { addToCart } from './shoppingcart.js'
+import { toastDisplay } from './shoppingcart.js'
+import { displaySingleProduct } from './product.js'
 function displayBrowse(products){
     let browseResults = document.querySelector("#browse-results");
     let noResults = document.querySelector("#no-results");
@@ -24,27 +25,27 @@ function displayBrowse(products){
         let btn = document.createElement("button");
 
         a.href = "#product";
-        a.class = "product-card-link";
+        a.className = "product-card-link";
         a.dataset.view = "product";
         a.dataset.id = item.id;
 
-        prodImg.class = "product-card-image";
+        prodImg.className = "product-card-image";
         prodImg.src = item.thumbnail;
         prodImg.alt = item.title;
 
-        prodH3.class = "product-card-title";
+        prodH3.className = "product-card-title";
         prodH3.textContent = item.title;
 
-        p.class = "product-card-category";
+        p.className = "product-card-category";
         p.textContent = item.category;
 
-        div.class = "product-card-footer";
+        div.className = "product-card-footer";
 
-        span.class = "product-card-footer";
+        span.className = "product-card-footer";
         span.textContent = `$${item.price.toFixed(2)}`
 
         btn.type = "button";
-        btn.class = "add-button";
+        btn.className = "add-button";
         btn.textContent = "+";
         btn.dataset.id = item.id;
 
@@ -119,4 +120,43 @@ function applyFiltersAndSort(){
 
 document.addEventListener("DOMContentLoaded", () =>{
     
+    //Typing input event handlers
+    let filterName = document.querySelector("#filter-name");
+    let filterPriceMin = document.querySelector("#filter-price-min");
+    let filterPriceMax = document.querySelector("#filter-price-max");
+
+    filterName.addEventListener("input", applyFiltersAndSort);
+    filterPriceMin.addEventListener("input", applyFiltersAndSort);
+    filterPriceMax.addEventListener("input", applyFiltersAndSort);
+
+    //Selection event handlers
+    let filterCat = document.querySelector("#filter-categories");
+    let filterRate = document.querySelector("#filter-rating");
+    let sortSelect = document.querySelector("#sort-select");
+
+    filterCat.addEventListener("change", applyFiltersAndSort);
+    filterRate.addEventListener("change", applyFiltersAndSort);
+    sortSelect.addEventListener("change", applyFiltersAndSort);
+
+    let browserClick = document.querySelector("#browse-results");
+    browserClick.addEventListener("click", (e) => {
+        let addBtn = e.target.closest(".add-button");
+        let productCard = e.target.closest(".product-card-link");
+        if(addBtn){
+            let id = addBtn.dataset.id;
+            id = Number(id);
+            addToCart(id,1);
+        }
+        
+        if (productCard){
+            e.preventDefault();
+            let prodid = productCard.dataset.id;
+            prodid = Number(prodid);
+            let product = config.products.find(prod => prod.id == prodid);
+
+            displaySingleProduct(product);
+        }
+    })
+
+    applyFiltersAndSort();
 })
