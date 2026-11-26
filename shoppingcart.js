@@ -176,7 +176,7 @@ function updateCartSummary(){
     summary.textContent = total.toFixed(2);
 }
 
-function toastDisplay(msg){
+export function toastDisplay(msg){
     let toast = document.querySelector("#toast");
     toast.textContent = msg; // set the text to the message 
     toast.hidden = false; // unhide the div element
