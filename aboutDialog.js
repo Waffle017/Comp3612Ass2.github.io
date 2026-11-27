@@ -4,5 +4,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     aboutOpen.addEventListener("click", () =>{
         aboutDialog.showModal();
-    })
+    });
 });
