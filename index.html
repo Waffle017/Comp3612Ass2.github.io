@@ -10,7 +10,6 @@
 <body class="bg-gray-100">
  <header class="site-header flex gap-6 bg-white p-4">
         <a href="#home" class="brand" data-view="home" aria-label="Northfield Market home">
-            <span class="brand-logo bg-blue-700 text-white px-2" aria-hidden="true">N</span>
             <span class="brand-name font-bold">Northfield Market</span>
         </a>
 
@@ -266,11 +265,9 @@
             </div>
         </article>
 
-    <a href="#" class="product-link text-blue-700" data-id="1">Test product 1</a>
     </main>
 
-    <!-- <dialog id="about-dialog" class="about-dialog fixed top-20 mx-auto max-w-lg p-6 border"> --> <!-- when js is working we will use this line-->
-    <dialog id="about-dialog" class="about-dialog fixed top-20 mx-auto max-w-lg p-6 border" open> <!--when js is working we will delete this line !-->
+    <dialog id="about-dialog" class="about-dialog fixed top-20 mx-auto max-w-lg p-6 border">
         <form method="dialog">
             <button class="dialog-close float-right text-2xl">&times;</button> <!-- Close button: &times; shows an × symbol. Because it is inside a form with method="dialog", clicking it closes the dialog without any JavaScript. -Google -->
         </form>
@@ -291,24 +288,25 @@
 <footer class="bg-gray-800 text-white p-6 mt-8">
     <p class="font-bold">Github</p>
     <ul class="mb-4">
-            <li><a href=#https://github.com/Waffle017/Comp3612Ass2.github.io>Github</a></li>
-            <li><a href=#> Privacy Policy </a></li>
-            <li><a href=#> Terms of Service </a></li>
-            <li><a href=#> Contact Us</a></li>
-
+            <li><a href="https://github.com/Waffle017/Comp3612Ass2.github.io">Github</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Contact Us</a></li>
     </ul>
     <p class="font-bold">Connect</p>
-    <ul class = "connect mb-4">
-        <li> <a href = #> Newsletter</a> </li>
-        <li> <a href = #> Facebook</a> </li>
-        <li> <a href = #> Instagram</a> </li>
-        <li> <a href = #> Twitter</a> </li>
+    <ul class="connect mb-4">
+        <li><a href="#">Newsletter</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Twitter</a></li>
     </ul>
-    
-    <p class="copyright text-sm text-center">&copy COMP3612. All rights reserved.</p>
+
+    <p class="copyright text-sm text-center">&copy; COMP3612. All rights reserved.</p>
 </footer>
 
     <script type="module" src="product.js"></script>
+    <script type="module" src="browse.js"></script>
+    <script type="module" src="ViewChanger.js"></script>
 
     <!--Toaster notification-->
     <div id="toast" hidden></div>
