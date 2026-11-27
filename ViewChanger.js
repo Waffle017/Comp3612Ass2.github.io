@@ -19,5 +19,5 @@ export function viewChanger(viewName){
     }
     //turn on requested view
     let requestedView = document.querySelector(`#${viewName}-view`) //'browse'-view etc etc
-    requestedView.classList.toggle("show");
+    requestedView.hidden = false;
 }
