@@ -268,8 +268,8 @@
     <a href="#" class="product-link text-blue-700" data-id="1">Test product 1</a>
     </main>
 
-    <!-- <dialog id="about-dialog" class="about-dialog fixed top-20 mx-auto max-w-lg p-6 border"> --> <!-- when js is working we will use this line-->
-    <dialog id="about-dialog" class="about-dialog fixed top-20 mx-auto max-w-lg p-6 border" open> <!--when js is working we will delete this line !-->
+    <dialog id="about-dialog" class="about-dialog fixed top-20 mx-auto max-w-lg p-6 border">  <!-- when js is working we will use this line-->
+    <!-- <dialog id="about-dialog" class="about-dialog fixed top-20 mx-auto max-w-lg p-6 border" open> when js is working we will delete this line !-->
         <form method="dialog">
             <button class="dialog-close float-right text-2xl">&times;</button> <!-- Close button: &times; shows an × symbol. Because it is inside a form with method="dialog", clicking it closes the dialog without any JavaScript. -Google -->
         </form>
@@ -310,6 +310,7 @@
     <script type="module" src="product.js"></script>
     <script type="module" src="browse.js"></script>
     <script type="module" src="ViewChanger.js"></script>
+    <script type="module" src="aboutDialog.js"></script>
 
     <!--Toaster notification-->
     <div id="toast" hidden></div>
