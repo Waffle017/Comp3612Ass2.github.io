@@ -3,8 +3,15 @@ import { addToCart } from './shoppingcart.js'
 
     //Event Listeners
 document.addEventListener("DOMContentLoaded", () => {  
-    displaySingleProduct(config.products[0]);
 
+
+    document.addEventListener("click", (e) => {
+        const link = e.target.closest(".product-card-link");
+        if (!link) return;
+        const product = config.products.find(p => p.id === Number(link.dataset.id));
+        if (product) displaySingleProduct(product);
+    });
+    
     let review = document.querySelector("#reviews");
     let reviewBtn = document.querySelector("#reviewBtn");
     let spec = document.querySelector("#specifications");

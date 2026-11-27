@@ -153,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () =>{
             let prodid = productCard.dataset.id;
             prodid = Number(prodid);
             let product = config.products.find(prod => prod.id == prodid);
-
             displaySingleProduct(product);
         }
     })

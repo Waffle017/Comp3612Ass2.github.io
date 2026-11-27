@@ -216,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () =>{
             displayCart();
             saveCart(); //in the event the user refreshes, save the cart
 
-        }
+        } 
     });
 
     checkout.addEventListener("click", (e) => { //click event when a checkout occurs
@@ -227,6 +227,12 @@ document.addEventListener("DOMContentLoaded", () =>{
         document.querySelector("#home-view").hidden = false; //go back to the home view
         let msg = "Order placed!";
         toastDisplay(msg);
+    });
+
+    document.addEventListener("click", (e) => {
+        const addBtn = e.target.closest(".add-button");
+        if (!addBtn) return;
+        addToCart(Number(addBtn.dataset.id), 1);
     });
     
 });
