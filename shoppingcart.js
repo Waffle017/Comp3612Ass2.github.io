@@ -1,6 +1,13 @@
 import config from './data-minified.json' with { type: 'json' };
 let cart = [];
 
+//shipping price for each method, then each destination
+const shippingRates = {
+    standard: { CA: 10, US: 15, INT: 20 },
+    express:  { CA: 25, US: 25, INT: 30 },
+    priority: { CA: 35, US: 50, INT: 50 }
+};
+
 export function addToCart(productId, quantity){
     let foundInCart = null;
         for(let cartProd of cart){
@@ -33,7 +40,7 @@ function displayCart(){
     span.textContent = totalCount;
 
     let cartRows = document.querySelector("#cart-rows"); //clear the table rows 
-    cartRows.innerHTML = "";
+    cartRows.replaceChildren();
 
     if (cart.length == 0){
         document.querySelector("#cart-empty").hidden = false; //unhide the empty cart
@@ -68,8 +75,12 @@ function displayCart(){
             prodPrice.textContent = `$${item.price.toFixed(2)}`;
 
             //set the quantity
-            let prodQty = document.createElement("p");
-            prodQty.textContent = item.quantity;
+            let prodQty = document.createElement("input");
+            prodQty.type = "number";
+            prodQty.min = "1";
+            prodQty.value = item.quantity;
+            prodQty.dataset.id = item.id;
+            prodQty.className = "qty-input";
 
             //set the sub total
             let total = item.price * item.quantity;
@@ -78,7 +89,7 @@ function displayCart(){
 
             //set the remove btn
             let btn = document.createElement("button");
-            btn.id = "del-btn"
+            btn.classList.add("del-btn");
             btn.textContent="-";
             btn.dataset.id = item.id;
 
@@ -125,58 +136,25 @@ function updateCartSummary(){
         subTotal += (item.price * item.quantity);
     }
     merch.textContent = `$${subTotal.toFixed(2)}`
-    //figure out the shipping amount 
+    //figure out the shipping amount
     if(subTotal > 500 || cart.length == 0){
-        shipping.textContent = "$0.00"
-    } else { //calculate the shipping 
-        if ( shippingMethod == "standard"){  //if the shipping method is standard
-            if (shippingDestination == "CA"){ //set the shipping amount based on destination region
-                shipPrice = 10;
-                shipping.textContent = shipPrice;
-            } else if(shippingDestination == "US"){
-                shipPrice = 15;
-                shipping.textContent = shipPrice;
-            } else{ //shipping amount is international & standard
-                shipPrice = 20;
-                shipping.textContent = shipPrice;
-            }
-        } else if(shippingMethod == "express"){ //if the shipping method is express
-            if (shippingDestination == "CA"){ //set the shipping amount based on destination region
-                shipPrice = 25;
-                shipping.textContent = shipPrice;
-            } else if(shippingDestination == "US"){
-                shipPrice = 25;
-                shipping.textContent = shipPrice;
-            } else{ //shipping amount is international & express 
-                shipPrice = 30;
-                shipping.textContent = shipPrice;
-            }
-            } else{ //if the shipping method is priority 
-                if (shippingDestination == "CA"){ //set the shipping amount based on destination region
-                    shipPrice = 35;
-                    shipping.textContent = shipPrice;
-                } else if(shippingDestination == "US"){
-                    shipPrice = 50;
-                    shipping.textContent = shipPrice;
-                } else{ //shipping amount is international & priority
-                    shipPrice = 50;
-                    shipping.textContent = shipPrice;
-                } 
-            }
+        shipPrice = 0;
+    } else { //look up the shipping price using the method and destination
+        shipPrice = shippingRates[shippingMethod][shippingDestination];
     }
+    shipping.textContent = `$${shipPrice.toFixed(2)}`;
     //Calculate tax total
     if (document.querySelector("#shipping-destination").value == "CA"){
         tax = subTotal * 0.05;
-        taxAmt.textContent = tax.toFixed(2);
     } else{
         tax = 0;
-        taxAmt.textContent = tax.toFixed(2);
     }
+    taxAmt.textContent = `$${tax.toFixed(2)}`;
     let total = subTotal + shipPrice + tax;
-    summary.textContent = total.toFixed(2);
+    summary.textContent = `$${total.toFixed(2)}`;
 }
 
-function toastDisplay(msg){
+export function toastDisplay(msg){
     let toast = document.querySelector("#toast");
     toast.textContent = msg; // set the text to the message 
     toast.hidden = false; // unhide the div element
@@ -192,8 +170,8 @@ document.addEventListener("DOMContentLoaded", () =>{
     let item = localStorage.getItem("cart");
     if(item){
         cart = JSON.parse(item);
-        displayCart();
     }
+    displayCart(); //always run so an empty cart shows the empty message and disables checkout
     //all query selectors for each event handler
     const shippingSelect = document.querySelector("#shipping-method");
     const destSelect = document.querySelector("#shipping-destination");
@@ -210,12 +188,29 @@ document.addEventListener("DOMContentLoaded", () =>{
     });
 
     cartRow.addEventListener("click", (e) => {  //click event when the user deletes
-        if (e.target.tagName == "BUTTON"){
+        if (e.target.classList.contains("del-btn")){
             let prodId = Number(e.target.dataset.id);
             cart = cart.filter(item => item.id !== prodId);
             displayCart();
             saveCart(); //in the event the user refreshes, save the cart
 
+        }
+    });
+
+    cartRow.addEventListener("change", (e) => { //change event when the user edits a quantity
+        if (e.target.classList.contains("qty-input")){
+            let prodId = Number(e.target.dataset.id);
+            let newQty = Number(e.target.value);
+            if (newQty < 1 || !Number.isInteger(newQty)){ //do not allow 0, negatives or decimals
+                newQty = 1;
+            }
+            for (let item of cart){
+                if (item.id === prodId){
+                    item.quantity = newQty;
+                }
+            }
+            displayCart();
+            saveCart(); //in the event the user refreshes, save the cart
         }
     });
 

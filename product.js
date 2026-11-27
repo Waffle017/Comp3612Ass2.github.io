@@ -1,8 +1,47 @@
 import config from './data-minified.json' with { type: 'json' };
-import { addToCart } from './shoppingcart.js'
-document.addEventListener("DOMContentLoaded", () => {
+import { addToCart, toastDisplay } from './shoppingcart.js'
 
-    function displaySingleProduct(product){
+    //Event Listeners
+document.addEventListener("DOMContentLoaded", () => {  
+    displaySingleProduct(config.products[0]);
+
+    let review = document.querySelector("#reviews");
+    let reviewBtn = document.querySelector("#reviewBtn");
+    let spec = document.querySelector("#specifications");
+    let specBtn = document.querySelector("#specBtn");
+
+    
+    specBtn.addEventListener("click", () =>{ //when someone clicks on the specification button 
+        spec.classList.remove("hidden");
+        review.classList.add("hidden");
+    });
+
+    reviewBtn.addEventListener("click", () =>{ //when someone clicks on the review button
+        spec.classList.add("hidden");
+        review.classList.remove("hidden");
+    });
+
+    let addToCartBtn = document.querySelector("#addToCart");
+    addToCartBtn.addEventListener("click", () =>{
+        let prodId = Number(addToCartBtn.dataset.id);
+        let qtyValue = Number(document.querySelector("#prodQuantity").value);
+
+
+        addToCart(prodId, qtyValue);
+        toastDisplay("Added to cart");
+    });
+
+    let aboutBtn = document.querySelector("#about-open");
+    let aboutDialog = document.querySelector("#about-dialog");
+
+    aboutBtn.addEventListener("click", () =>{ //when someone clicks on the about button open the dialog
+        aboutDialog.showModal();
+    });
+
+});
+
+
+    export function displaySingleProduct(product){
         document.querySelector("#breadcrumb").textContent = `Home > ${product.category} > ${product.title}`
 
         //Main product view
@@ -67,35 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     displaySingleProduct(config.products[0]);
 
-    //Event Listeners
-    let review = document.querySelector("#reviews");
-    let reviewBtn = document.querySelector("#reviewBtn");
-    let spec = document.querySelector("#specifications");
-    let specBtn = document.querySelector("#specBtn");
-
-    
-    specBtn.addEventListener("click", () =>{ //when someone clicks on the specification button 
-        spec.classList.remove("hidden");
-        review.classList.add("hidden");
-    });
-
-    reviewBtn.addEventListener("click", () =>{ //when someone clicks on the review button
-        spec.classList.add("hidden");
-        review.classList.remove("hidden");
-    });
-
-    let addToCartBtn = document.querySelector("#addToCart");
-    addToCartBtn.addEventListener("click", () =>{
-        let prodId = Number(addToCartBtn.dataset.id);
-        let qtyValue = Number(document.querySelector("#prodQuantity").value);
-
-
-        addToCart(prodId, qtyValue);
-        console.log(prodId);
-        console.log(qtyValue);
-    });
-
-    //helper functions
+        //helper functions
     function generateStars(rating){
         let num = Math.round(rating); //round up the value of rating
         let star =  '';
@@ -110,5 +121,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     
-
-});
