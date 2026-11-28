@@ -2,6 +2,7 @@ import config from './data-minified.json' with { type: 'json' };
 import { addToCart } from './shoppingcart.js'
 import { toastDisplay } from './shoppingcart.js'
 import { displaySingleProduct } from './product.js'
+
 function displayBrowse(products){
     let browseResults = document.querySelector("#browse-results");
     let noResults = document.querySelector("#no-results");

@@ -215,8 +215,14 @@
             </div>
         </article>
 
-        <article id="category-view" class="view" hidden>
+        <article id="category-view" class="view">
+            <section class="category-hero bg-blue-100 p-8 rounded text-center">
+                <h1 class="text-4xl font-bold">Shop by category</h1>
+                <p>Find what you're looking for.</p>
+            </section>
+             <div id="category-list" class="grid grid-cols-4 gap-4 mt-6"></div>
         </article>
+
         <article id="cart-view" class="view" hidden>
             <h1 class="text-3xl font-bold mb-4">Shopping Cart</h1>
 
@@ -311,7 +317,7 @@
     <script type="module" src="product.js"></script>
     <script type="module" src="browse.js"></script>
     <script type="module" src="ViewChanger.js"></script>
-
+    <script type="module" src="category.js"></script>
     <!--Toaster notification-->
     <div id="toast" hidden></div>
 </body>
