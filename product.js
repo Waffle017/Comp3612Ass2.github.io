@@ -1,5 +1,5 @@
 import config from './data-minified.json' with { type: 'json' };
-import { addToCart } from './shoppingcart.js'
+import { addToCart, toastDisplay } from './shoppingcart.js'
 
     //Event Listeners
 document.addEventListener("DOMContentLoaded", () => {  
@@ -28,8 +28,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         addToCart(prodId, qtyValue);
-        console.log(prodId);
-        console.log(qtyValue);
+        toastDisplay("Added to cart");
+    });
+
+    let aboutBtn = document.querySelector("#about-open");
+    let aboutDialog = document.querySelector("#about-dialog");
+
+    aboutBtn.addEventListener("click", () =>{ //when someone clicks on the about button open the dialog
+        aboutDialog.showModal();
     });
 
 });
